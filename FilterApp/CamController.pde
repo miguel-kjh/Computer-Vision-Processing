@@ -16,9 +16,16 @@ class CamController{
         cam.read();
         img.copy(cam, 0, 0, cam.width, cam.height, 
           0, 0, img.width, img.height);
-          img.copyTo();
-        image(img,0,0);
+        img.copyTo();
     }
+  }
+  
+  public void showImage(){
+    image(img,0,0);
+  }
+  
+  public CVImage getImage(){
+    return img;
   }
 
 }
