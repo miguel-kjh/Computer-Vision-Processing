@@ -1,6 +1,6 @@
 class Filter{
   public void smileFilter(Rect[] smiles){
-    text("SimelDetected",width*0.1,height*0.05);
+    text("Simel Detector",width*0.1,height*0.05);
     noFill();
     stroke(5,234,249);
     strokeWeight(4);
@@ -14,15 +14,33 @@ class Filter{
     }
   }
   
-  public void facesFilte(Rect[] faces){
-    text("FaceDetected",width*0.1,height*0.05);
+  public void facesFilter(Rect[] faces){
+    text("Faces Detector",width*0.1,height*0.05);
     noFill();
     stroke(255,0,0);
     strokeWeight(4);
     for (Rect r : faces) {
-      if(r.width < 100 && r.height < 100){
-        continue;
-      }
+      rect(r.x, r.y, r.width, r.height);
+     }
+  }
+  
+  public void handFilter(Rect[] faces){
+    text("Hands Detector",width*0.1,height*0.05);
+    noFill();
+    stroke(255,0,0);
+    strokeWeight(4);
+    circle(0,0,10);
+    for (Rect r : faces) {
+      rect(r.x, r.y, r.width, r.height);
+     }
+  }
+  
+  public void eyesFilter(Rect[] faces){
+    text("Eyes Detector",width*0.1,height*0.05);
+    noFill();
+    stroke(255,0,0);
+    strokeWeight(4);
+    for (Rect r : faces) {
       rect(r.x, r.y, r.width, r.height);
      }
   }
