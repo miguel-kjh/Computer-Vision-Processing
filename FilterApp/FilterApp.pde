@@ -2,9 +2,12 @@ import java.lang.*;
 import processing.video.*;
 import cvimage.*;
 import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+
 //Detectores
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
+
 
 CamController  camController;
 Detection facesDetection;
@@ -43,7 +46,7 @@ void apllyFilter(CVImage img){
   Mat grey = img.getGrey();
   switch(keyController.getKeyPressed()) {
     case 0:
-      filter.facesFilter(facesDetection.getObjectsDetection(grey));
+      filter.facesFilter(facesDetection.getObjectsDetection(grey), img);
       break;
     case 1:
       filter.smileFilter(smilesDetection.getObjectsDetection(grey));
@@ -56,7 +59,7 @@ void apllyFilter(CVImage img){
       filter.handFilter(handDetection.getObjectsDetection(grey));
       break;
     case 3:
-      filter.eyesFilter(eyeDetection.getObjectsDetection(grey));
+      filter.eyesFilter(eyeDetection.getObjectsDetection(grey), img);
       break;
   }
   /*CVImage result = new CVImage(width,height);
