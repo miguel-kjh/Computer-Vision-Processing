@@ -7,6 +7,7 @@ import org.opencv.imgproc.Imgproc;
 //Detectores
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
+import gifAnimation.*;
 
 
 CamController  camController;
@@ -17,6 +18,9 @@ Detection eyeDetection;
 KeyController  keyController;
 Filter filter;
 int wordSize;
+GifMaker gif;
+final int maxFrame = 10;
+int countFrame     = 0;
 
 void setup(){
   size(640, 480, P3D);
@@ -34,12 +38,23 @@ void setup(){
   filter            = new Filter();
   textAlign(CENTER,CENTER);
   textSize(wordSize);
+  gif = new GifMaker(this,"animation.gif");
+  gif.setRepeat(0);
 }
 
 void draw(){
   camController.takeImagen();
   camController.showImage();
   apllyFilter(camController.getImage());
+  setFrame();
+}
+
+void setFrame(){
+  if(countFrame == maxFrame){
+      gif.addFrame();
+      countFrame = 0;
+  }
+  countFrame++;
 }
 
 void apllyFilter(CVImage img){
