@@ -7,7 +7,7 @@ import org.opencv.imgproc.Imgproc;
 //Detectores
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
-import gifAnimation.*;
+//import gifAnimation.*;
 
 
 CamController  camController;
@@ -18,9 +18,9 @@ Detection eyeDetection;
 KeyController  keyController;
 Filter filter;
 int wordSize;
-GifMaker gif;
-final int maxFrame = 10;
-int countFrame     = 0;
+//GifMaker gif;
+//final int maxFrame = 10;
+//int countFrame     = 0;
 
 void setup(){
   size(640, 480, P3D);
@@ -38,24 +38,24 @@ void setup(){
   filter            = new Filter();
   textAlign(CENTER,CENTER);
   textSize(wordSize);
-  gif = new GifMaker(this,"animation.gif");
-  gif.setRepeat(0);
+  //gif = new GifMaker(this,"animation.gif");
+  //gif.setRepeat(0);
 }
 
 void draw(){
   camController.takeImagen();
   camController.showImage();
   apllyFilter(camController.getImage());
-  setFrame();
+  //setFrame();
 }
 
-void setFrame(){
+/*void setFrame(){
   if(countFrame == maxFrame){
       gif.addFrame();
       countFrame = 0;
   }
   countFrame++;
-}
+}*/
 
 void apllyFilter(CVImage img){
   Mat grey = img.getGrey();
@@ -67,19 +67,12 @@ void apllyFilter(CVImage img){
       filter.smileFilter(smilesDetection.getObjectsDetection(grey));
       break;
     case 2:
-      /*CVImage result = new CVImage(width,height);
-      cpMat2CVImage(img.getGrey(),result);
-      image(result,0,0);
-      text("Grey Shit",width*0.1,height*0.05);*/
       filter.handFilter(handDetection.getObjectsDetection(grey));
       break;
     case 3:
       filter.eyesFilter(eyeDetection.getObjectsDetection(grey), img);
       break;
   }
-  /*CVImage result = new CVImage(width,height);
-  cpMat2CVImage(img.getGrey(),result);*/
-  //return img;
 }
 
 void cpMat2CVImage(Mat in_mat,CVImage out_img)

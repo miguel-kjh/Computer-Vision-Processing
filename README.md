@@ -180,7 +180,9 @@ Quizás este sea el más divertido, consiste en un filtro de *realidad aumentada
 
 ### Detalles sobre los modelos
 
-Todos los modelos usados utilizan un aproximación de **detección en cascada**. La detección de objetos usando los clasificadores en cascada basados ​​en características de Haar es un método efectivo de detección de objetos propuesto por Paul Viola y Michael Jones en su artículo, "Detección rápida de objetos usando una cascada mejorada de características simples" en 2001. Es un enfoque basado en el aprendizaje automático donde La función en cascada se forma a partir de muchas imágenes positivas y negativas. Luego se usa para detectar objetos en otras imágenes. Aunque son efectivos suelen ser **muy dependientes de la iluminación y bajo en entorno inadecuado suelen fallar** a parte que datan de hace ochos años y actualmente existen diversas técnicas más avanzadas en este ámbito pero como no es objetivo en esta práctica se ha preferido en utilizar un enfoque más sencillo.
+Todos los modelos usados utilizan un aproximación de **detección en cascada**. La detección de objetos usando los clasificadores en cascada basados ​​en características de Haar es un método efectivo de detección de objetos propuesto por Paul Viola y Michael Jones en su artículo, "Detección rápida de objetos usando una cascada mejorada de características simples" en 2001. Es un enfoque basado en el aprendizaje automático donde, La función en cascada se forma a partir de muchas imágenes positivas y negativas. Posteriormente se usa para detectar objetos en otras imágenes. 
+
+Aunque son efectivos suelen ser **muy dependientes de la iluminación y bajo en entorno inadecuado suelen fallar** a parte que los modelos usados datan de hace ochos años y actualmente existen diversas técnicas más avanzadas en este ámbito pero como no es objetivo en esta práctica se ha preferido en utilizar un enfoque más sencillo.
 
 ## Eventos y Controles
 
