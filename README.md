@@ -19,25 +19,28 @@ Correo: miguel.medina108@alu.ulpgc.es
 5. [Bibliografía](#bibliografía)
 
 ## Introducción
-En está práctica se pretende hacer uso de la camara para implementar alguna aplicación gráfica. Se ha escogido hacer uso de **OpenCV** y de varias técnicas de visión por computador para implementar una serie de filtros o aplicaciones que implique la decticón de alguna parte del cuerpo y como respuesta alguna modificación en las imagenes sacadas con la camara haciendo uso de **processing**.
-
+En está práctica se pretende hacer uso de la cámara para implementar alguna aplicación gráfica. Se ha escogido hacer uso de **OpenCV** y de varias técnicas de visión por computador para implementar una serie de filtros o aplicaciones que implique la detección de alguna parte del cuerpo y como respuesta alguna modificación en las imagenes sacadas con la cámara haciendo uso de **processing**.
+ 
 ## Dependencias
 Para poder ejecutar y probar la práctica solamente se necesita clonar este repositorio y el editor de processing con la siguiente dependencia:
 - La librería **GifAnimation** para poder reproducir y guardar gifs. Como esta librería no forma parte necesaria para la correcta implementación de la práctica, en el código toda la lógica relacionada con ella se encuentra comentada, además de que afecta al rendimiento de la aplicación.En este [enlace](https://github.com/extrapixel/gif-animation) se encuentra la forma de instalarla.
+ 
+- La librería **CVImage** para utilizar OpenCV.
+ 
+- La librería **GStreamer based video library for Processing** para captura la cámara.
+
 
 ## Implementación
-
-Se ha hecho uso de la libreria **CVImage** y de la libreria **GStreamer based video library for Processing**
 
 ### Diseño de clases
 <p align="center"> 
    <img src="data/diagrama.png" alt="diagrama"></img>
-   <p align="center">Figura 2: Diagrama de clases</p>
+   <p align="center">Figura 1: Diagrama de clases</p>
 </p>
 
 ### Detección de caras
 
-El objetivo de este filtro es detectar las caras y mediante un algoritmo aleatorio que consiste en elegir otro serie de pixeles de la imagenes para sustituir la cara, con la certaza que no se pueden recomponer las imagenes de las caras.Para ello se ha implmentado el siguiente código.
+El objetivo de este filtro es detectar las caras y mediante un algoritmo aleatorio que consiste en elegir otro serie de píxeles de la imagenes para sustituir la cara, con la certeza que no se pueden recomponer las imágenes de las caras.Para ello se ha implementado el siguiente código.
 
 ```java
   public void facesFilter(Rect[] faces, CVImage img){
@@ -65,9 +68,14 @@ El objetivo de este filtro es detectar las caras y mediante un algoritmo aleator
   }
 ```
 
+<p align="center"> 
+   <img src="data/face_gif.gif" alt="animation"></img>
+   <p align="center">Figura 2: Detector de caras</p>
+</p>
+
 ### Detección de sonrisas
 
-La idea de este filtro es utilizar la detección de sonrisas para permitir al usuario ver las imagenes tamadas con la camara.
+La idea de este filtro es utilizar la detección de sonrisas para permitir al usuario ver las imágenes tomadas con la camara.
 
 ```java
 public void smileFilter(Rect[] smiles){
@@ -86,9 +94,14 @@ public void smileFilter(Rect[] smiles){
   }
 ```
 
+<p align="center"> 
+   <img src="data/smile_gif.gif" alt="animation"></img>
+   <p align="center">Figura 3: Detector de sonrisas</p>
+</p>
+
 ### Detección de ojos
 
-La idea es utilizar la posicion de los ojos(se utiliza el punto medio de estos) para controlar el nivel de umbralizado de la imagen.
+La idea es utilizar la posición de los ojos(se utiliza el punto medio de estos) para controlar el nivel de umbralizado de la imagen.
 
 ```java
   private float midPoint(float x1,float x2){
@@ -117,9 +130,14 @@ La idea es utilizar la posicion de los ojos(se utiliza el punto medio de estos) 
 }
 ```
 
+<p align="center"> 
+   <img src="data/eyes_gif.gif" alt="animation"></img>
+   <p align="center">Figura 4: Detector de Ojos</p>
+</p>
+
 ### Detección de manos
 
-Quizas este sea el más divertido, consite en un filtro de *realidad aumentada* en donde se utiliza un detector de palmas de manos para intentar detener una pelota que gira por toda la cámara de forma aleatoria.
+Quizás este sea el más divertido, consiste en un filtro de *realidad aumentada* en donde se utiliza un detector de palmas de manos para intentar detener una pelota que gira por toda la cámara de forma aleatoria.
 
 ```java
   private void moveBall(){
@@ -155,9 +173,14 @@ Quizas este sea el más divertido, consite en un filtro de *realidad aumentada* 
   }
 ```
 
+<p align="center"> 
+   <img src="data/hands_gif.gif" alt="animation"></img>
+   <p align="center">Figura 4: Detector de Manos</p>
+</p>
+
 ### Detalles sobre los modelos
 
-Todos los modelos usadon utilizan un aproximación de **detección en cascada**. La detección de objetos usando los clasificadores en cascada basados ​​en características de Haar es un método efectivo de detección de objetos propuesto por Paul Viola y Michael Jones en su artículo, "Detección rápida de objetos usando una cascada mejorada de características simples" en 2001. Es un enfoque basado en el aprendizaje automático donde La función en cascada se forma a partir de muchas imágenes positivas y negativas. Luego se usa para detectar objetos en otras imágenes. Aunque son efectivos suelen ser **muy dependientes de la iluminación y bajo en entorno inadecuado suelen fallar** a parte que datan de hace ochos años y actualmente existe diversas técnicas más avanzadas en este ambito pero como no es objetivo en está prática se ha preferido en utilizar un enfoque más sencillo.
+Todos los modelos usados utilizan un aproximación de **detección en cascada**. La detección de objetos usando los clasificadores en cascada basados ​​en características de Haar es un método efectivo de detección de objetos propuesto por Paul Viola y Michael Jones en su artículo, "Detección rápida de objetos usando una cascada mejorada de características simples" en 2001. Es un enfoque basado en el aprendizaje automático donde La función en cascada se forma a partir de muchas imágenes positivas y negativas. Luego se usa para detectar objetos en otras imágenes. Aunque son efectivos suelen ser **muy dependientes de la iluminación y bajo en entorno inadecuado suelen fallar** a parte que datan de hace ochos años y actualmente existen diversas técnicas más avanzadas en este ámbito pero como no es objetivo en esta práctica se ha preferido en utilizar un enfoque más sencillo.
 
 ## Eventos y Controles
 
